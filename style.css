@@ -1,0 +1,414 @@
+/* --- Font Import --- */
+/*
+ * =====================================================================================
+ * IMPORTANT: You must import your custom fonts for them to appear on the website.
+ * The browser cannot use 'SEMPLICITA PRO' if it hasn't been loaded.
+ * 
+ * Replace the placeholder line below with the actual URL from your font provider (e.g., Adobe Fonts).
+ * =====================================================================================
+ */
+/* Font loading is now handled in the HTML files via <link> tag for performance. */
+
+/* --- Global Styles & Variables --- */
+:root {
+    --primary-color: #834b9d; /* Purple */
+    --secondary-color: #359547; /* Green */
+    --accent-color: #FFFFFF; /* White */
+    --text-color: #FFFFFF; /* White */
+    --light-gray: #1c1c1c; /* Dark Gray for section backgrounds */
+    --heading-font: 'mencken-std-head-narrow', 'Georgia', serif;
+    --body-font: 'semplicita-pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+body {
+    font-family: var(--body-font);
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+    background-color: #000;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--heading-font);
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 1.5rem; /* Establish consistent spacing below headings */
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Set larger base font sizes for titles */
+h1 { font-size: 3rem; }      /* Approx 1.5x default */
+h2 { 
+    font-size: 2.25rem;   /* Approx 1.5x default */
+    margin-top: 2.5rem;     /* Reduced space above h2 titles for better balance */
+}
+h3 { font-size: 1.75rem; }   /* Approx 1.5x default */
+h4 { font-size: 1.5rem; }      /* Approx 1.5x default */
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 2rem;
+    overflow: hidden;
+}
+
+/* --- Header & Navigation --- */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 1.25rem 2rem; /* Adjusted top padding to position menu text */
+    background: rgba(17, 17, 17, 0.2); /* 80% transparent black */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+}
+
+.nav-logo {
+    line-height: 0; /* Prevents extra vertical space */
+}
+
+.nav-logo img {
+    height: 100px;
+    width: auto;
+    vertical-align: middle; /* Helps align the logo with nav links */
+}
+
+.nav-menu {
+    display: flex;
+    align-items: flex-end;
+    gap: 1.5rem;
+}
+
+.nav-link {
+    color: var(--accent-color);
+    font-weight: normal;
+    font-size: clamp(1rem, 0.5rem + 1.25vw, 1.5rem); /* Scales dramatically from 1rem to 2rem */
+}
+
+/* Set the color for the currently active page link */
+.nav-link.active {
+    color: var(--primary-color);
+}
+
+.cta-button {
+    background-color: var(--secondary-color);
+    color: #fff;
+    padding: 0.8rem 1.6rem;
+    border-radius: 5px;
+    font-weight: bold;
+    font-family: var(--body-font);
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #5db067; /* Green Hover */
+    text-decoration: none;
+}
+
+/* --- Ticket Banner --- */
+.ticket-banner {
+    background-color: var(--secondary-color);
+    text-align: center;
+    padding: 0.75rem 2rem;
+}
+
+/* --- Scroll-driven Animation for Navbar --- */
+@keyframes fade-to-glass-background {
+    to {
+        background: rgba(17, 17, 17, 0.2);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+    }
+}
+ 
+/* Apply animation if the browser supports it, otherwise navbar remains semi-transparent */
+@supports (animation-timeline: scroll()) {
+    .navbar {
+        background: #111; /* Start with a solid background */
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        animation: fade-to-glass-background linear forwards;
+        animation-timeline: scroll(root);
+        animation-range: 250px 1250px; /* Fade in over a longer scroll distance (500px) */
+    }
+}
+
+/* --- Hero Section (Homepage) --- */
+.video-hero {
+    position: relative;
+    height: 80vh;
+    display: flex;
+    justify-content: flex-start; /* Align content to the left */
+    align-items: flex-start;   /* Align content to the top */
+    color: var(--accent-color);
+    overflow: hidden;
+    padding: calc(20vh - 100px) 10vw 20vh; /* Move content up by 100px */
+    box-sizing: border-box; /* Ensure padding is included in the element's total height and width */
+}
+
+/* Add a gradient overlay to the hero video for text readability */
+.video-hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        /* Fade to black at the bottom for a seamless transition */
+        linear-gradient(to bottom, transparent 70%, #000),
+        /* More gradual fade from the left, becoming transparent at the 75% mark */
+        linear-gradient(to right, #000 25%, transparent 100%);
+    z-index: -1; /* Position it between the video and the text */
+}
+
+.video-hero video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -2;
+}
+
+.hero-content {
+    max-width: 700px;
+    text-align: left; /* Align text within the container to the left */
+    padding-left: 8rem;
+}
+
+.video-hero h1 {
+    font-size: 6.75rem; /* Increased by 1.5x from 4.5rem */
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    line-height: 1; /* Tighter line spacing for the main heading */
+}
+
+.video-hero p {
+    font-size: 1.5rem;
+    line-height: 1.3; /* Tighter line spacing for the paragraph */
+}
+
+.hero-cta {
+    margin-top: 2rem;
+    padding: 1rem 2.5rem;
+    font-size: 1.3rem; /* Slightly larger to match new title sizes */
+}
+
+/* --- General Sections --- */
+section {
+    padding: 4rem 0;
+}
+
+.page-main {
+    padding-top: 4rem;
+}
+
+.lead {
+    font-family: var(--heading-font);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    color: #ddd;
+    /* Align with the main container */
+    max-width: 1100px;
+    margin: 0 auto 2rem; /* Reduced bottom margin for better balance */
+    box-sizing: border-box; /* Ensures padding is included in the width calculation */
+}
+
+/* --- Homepage Sections --- */
+.synopsis {
+    text-align: left;
+    padding-top: calc(4.5rem); /* Add extra space below the hero */
+}
+
+.learn-more {
+    display: inline-block;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+.reviews {
+    background: url('https://via.placeholder.com/1920x1080/111111/808080?text=Background+Image') no-repeat center center/cover;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.review-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.review-item blockquote {
+    font-size: 1.2rem;
+    font-style: italic;
+    margin: 0;
+}
+
+.review-item cite {
+    display: block;
+    margin-top: 1rem;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+/* --- About Page --- */
+.faq-item {
+    margin-bottom: 1.5rem;
+    border-left: 3px solid var(--primary-color);
+    padding-left: 1rem;
+}
+
+/* --- Cast & Creative Page --- */
+.cast-grid, .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    text-align: center;
+}
+
+.gallery-grid {
+    grid-auto-rows: 250px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.gallery-grid img:nth-child(2) {
+    grid-row: span 2;
+}
+
+.gallery-grid img:nth-child(4) {
+    grid-column: span 2;
+}
+
+.cast-member img, .gallery-grid img {
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 2px solid var(--light-gray);
+}
+
+.creative-grid {
+    margin-top: 3rem;
+}
+
+/* --- Gallery Page --- */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #000;
+    margin-top: 3rem;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* --- Footer --- */
+footer {
+    background: #111;
+    color: var(--accent-color);
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 4rem;
+}
+
+footer a {
+    color: var(--accent-color);
+}
+
+/* --- Hamburger Menu --- */
+.hamburger {
+    display: none; /* Hidden on desktop */
+    cursor: pointer;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    transition: all 0.3s ease-in-out;
+    background-color: var(--accent-color);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 850px) {
+    .navbar {
+        align-items: center; /* Re-center items on mobile */
+    }
+
+    .hamburger {
+        display: block; /* Show hamburger on mobile */
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .nav-menu {
+        position: fixed;
+        left: -100%; /* Hide menu off-screen */
+        top: 206px; /* Position below navbar (~140px) and ticket banner (~66px) */
+        flex-direction: column;
+        align-items: stretch; /* Override desktop alignment for mobile */
+        background-color: #111;
+        width: 100%;
+        text-align: left;
+        transition: 0.3s;
+        gap: 0;
+        z-index: 98; /* Below ticket banner (99) */
+        padding-top: 0;
+    }
+
+    .nav-menu.active {
+        left: 0; /* Show menu */
+    }
+
+    .nav-link {
+        padding: 1.5rem 2rem;
+    }
+
+    .video-hero h1 {
+        font-size: 4.5rem; /* Increased by 1.5x from 3rem */
+    }
+
+    .video-hero p {
+        font-size: 1.2rem;
+    }
+}
