@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.typekit.net/ibf4efh.css">
-    <title>Auditions - Campaign Musical</title>
+    <title>Book Tickets - Campaign Musical</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -18,7 +18,7 @@
                 <a href="about.html" class="nav-link">About</a>
                 <a href="cast.html" class="nav-link">Cast & Creative</a>
                 <a href="gallery.html" class="nav-link">Gallery</a>
-                <a href="auditions.html" class="nav-link active">Auditions</a>
+                <a href="auditions.html" class="nav-link">Auditions</a>
                 <a href="tickets.html" class="cta-button">Book Tickets</a>
             </div>
             <div class="hamburger">
@@ -31,14 +31,30 @@
 
     <main class="page-main">
         <section class="container">
-            <h1>Auditions</h1>
-            <p class="lead">Information on upcoming auditions for <span class="emphasis">Campaign</span>.</p>
+            <h1>Register To Vote</h1>
+            <p class="lead">Select a date to see available showtimes.</p>
             
-            <h2>Current Casting Calls</h2>
-            <p>There are no open calls at this time. Please check back later for future opportunities.</p>
-            <p>We encourage performers of all ethnicities, gender identities, and ages, as well as performers with disabilities, to attend every audition.</p>
+            <div class="ticket-booking-container">
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <button id="prev-month-btn">&lt;</button>
+                        <h2 id="month-year"></h2>
+                        <button id="next-month-btn">&gt;</button>
+                    </div>
+                    <div class="weekdays">
+                        <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+                    </div>
+                    <div class="days-grid" id="days-grid"></div>
+                </div>
 
-            <p>For consideration for future replacements, please have your agent submit your headshot and resume to <a href="mailto:casting@campaignmusical.com">casting@campaignmusical.com</a>.</p>
+                <div class="showtimes-container">
+                    <h3>Available Showtimes for</h3>
+                    <h3><span id="selected-date-display"></span></h3>
+                    <div id="showtimes-list">
+                        <p class="no-date-selected">Please select a date from the calendar.</p>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 

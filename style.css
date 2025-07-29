@@ -10,6 +10,8 @@
 /* Font loading is now handled in the HTML files via <link> tag for performance. */
 
 /* --- Global Styles & Variables --- */
+
+
 :root {
     --primary-color: #834b9d; /* Purple */
     --secondary-color: #359547; /* Green */
@@ -19,6 +21,20 @@
     --heading-font: 'mencken-std-head-narrow', 'Georgia', serif;
     --body-font: 'semplicita-pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+
 
 body {
     font-family: var(--body-font);
@@ -72,12 +88,18 @@ header {
 
 .navbar {
     display: flex;
+    position: fixed;
+    margin-inline: auto;
+    top:0;
+    left: 0;
+    right: 0;
+    width: 100dvw;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
     padding: 1.25rem 2rem; /* Adjusted top padding to position menu text */
-    background: rgba(17, 17, 17, 0.2); /* 80% transparent black */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    background: rgba(255, 0, 0, 0.2); /* 80% transparent black */
+    /* backdrop-filter: blur(10px); */
+    /* -webkit-backdrop-filter: blur(10px); For Safari */
 }
 
 .nav-logo {
@@ -85,14 +107,14 @@ header {
 }
 
 .nav-logo img {
-    height: 100px;
+    height: 75px;
     width: auto;
     vertical-align: middle; /* Helps align the logo with nav links */
 }
 
 .nav-menu {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     gap: 1.5rem;
 }
 
@@ -118,22 +140,20 @@ header {
     transition: background-color 0.3s ease;
 }
 
+/* Position the CTA button within the nav menu */
+.nav-menu .cta-button {
+    margin-left: auto; /* Pushes button to the right, separating it from nav links */
+}
+
 .cta-button:hover {
     background-color: #5db067; /* Green Hover */
     text-decoration: none;
 }
 
-/* --- Ticket Banner --- */
-.ticket-banner {
-    background-color: var(--secondary-color);
-    text-align: center;
-    padding: 0.75rem 2rem;
-}
-
 /* --- Scroll-driven Animation for Navbar --- */
 @keyframes fade-to-glass-background {
     to {
-        background: rgba(17, 17, 17, 0.2);
+        background: rgba(0, 0, 0, 0.2);
         backdrop-filter: blur(5px);
         -webkit-backdrop-filter: blur(5px);
     }
@@ -142,7 +162,7 @@ header {
 /* Apply animation if the browser supports it, otherwise navbar remains semi-transparent */
 @supports (animation-timeline: scroll()) {
     .navbar {
-        background: #111; /* Start with a solid background */
+    background: rgba(0, 0, 0, 0.1); /* 80% transparent black */
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
         animation: fade-to-glass-background linear forwards;
@@ -314,6 +334,110 @@ section {
     margin-top: 3rem;
 }
 
+/* --- Ticket Booking Page --- */
+.ticket-booking-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+@media (min-width: 992px) {
+    .ticket-booking-container {
+        grid-template-columns: 1.2fr 1fr;
+    }
+}
+
+.calendar-container {
+    background-color: var(--light-gray);
+    padding: 1.5rem;
+    border-radius: 5px;
+    border: 1px solid #333;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.calendar-header h2 {
+    margin: 0;
+    font-size: 1.75rem;
+}
+
+.calendar-header button {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0 1rem;
+}
+
+.weekdays, .days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    gap: 0.5rem;
+}
+
+.weekdays {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #aaa;
+}
+
+.day {
+    padding: 0.75rem 0;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.day:not(.disabled):hover { background-color: var(--primary-color); color: var(--accent-color); }
+.day.disabled { color: #444; cursor: not-allowed; text-decoration: line-through; }
+.day.disabled.prev-next-month {
+    color: #555;
+    text-decoration: none;
+}
+.day.today { font-weight: bold; border: 2px solid var(--secondary-color); }
+.day.selected {
+    background-color: var(--secondary-color);
+    color: var(--accent-color);
+}
+
+.showtimes-container h3 {
+    margin-bottom: 1rem;
+}
+
+#selected-date-display {
+    color: var(--secondary-color);
+}
+
+#showtimes-list .no-date-selected {
+    color: #aaa;
+    font-style: italic;
+}
+
+.showtime-card {
+    background-color: var(--light-gray);
+    border: 1px solid #333;
+    border-radius: 5px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.showtime-card p {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
 /* --- Gallery Page --- */
 .video-container {
     position: relative;
@@ -362,7 +486,7 @@ footer a {
 }
 
 /* --- Responsive Design --- */
-@media (max-width: 850px) {
+@media (max-width: 1050px) {
     .navbar {
         align-items: center; /* Re-center items on mobile */
     }
@@ -384,7 +508,7 @@ footer a {
     .nav-menu {
         position: fixed;
         left: -100%; /* Hide menu off-screen */
-        top: 206px; /* Position below navbar (~140px) and ticket banner (~66px) */
+        top: 140px; /* Position below navbar (logo 100px + padding 2.5rem) */
         flex-direction: column;
         align-items: stretch; /* Override desktop alignment for mobile */
         background-color: #111;
@@ -392,7 +516,7 @@ footer a {
         text-align: left;
         transition: 0.3s;
         gap: 0;
-        z-index: 98; /* Below ticket banner (99) */
+        z-index: 99; /* Ensure it's on top of other content */
         padding-top: 0;
     }
 
@@ -410,5 +534,10 @@ footer a {
 
     .video-hero p {
         font-size: 1.2rem;
+    }
+
+    .nav-menu .cta-button {
+        margin: 1.5rem 2rem;
+        text-align: center;
     }
 }
