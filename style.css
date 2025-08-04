@@ -104,6 +104,8 @@ header {
 
 .nav-logo {
     line-height: 0; /* Prevents extra vertical space */
+    position: relative; /* Allows z-index to be applied */
+    z-index: 1001; /* Ensures logo stays above the mobile menu overlay */
 }
 
 .nav-logo img {
@@ -167,7 +169,7 @@ header {
         -webkit-backdrop-filter: none;
         animation: fade-to-glass-background linear forwards;
         animation-timeline: scroll(root);
-        animation-range: 250px 1250px; /* Fade in over a longer scroll distance (500px) */
+        animation-range: 0px 500px; /* Fade in over a longer scroll distance (500px) */
     }
 }
 
@@ -176,11 +178,11 @@ header {
     position: relative;
     height: 80vh;
     display: flex;
-    justify-content: flex-start; /* Align content to the left */
+    justify-content: center; /* Center content horizontally */
     align-items: flex-start;   /* Align content to the top */
     color: var(--accent-color);
     overflow: hidden;
-    padding: calc(20vh - 100px) 10vw 20vh; /* Move content up by 100px */
+    padding: calc(20vh - 100px) 0 20vh; /* Use content block for horizontal padding */
     box-sizing: border-box; /* Ensure padding is included in the element's total height and width */
 }
 
@@ -211,9 +213,12 @@ header {
 }
 
 .hero-content {
-    max-width: 700px;
+    max-width: 1100px; /* Match .container for alignment */
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
     text-align: left; /* Align text within the container to the left */
-    padding-left: 8rem;
+    padding: 6rem 2rem 0; /* Keep top padding, add horizontal padding like .container */
 }
 
 .video-hero h1 {
@@ -240,7 +245,7 @@ section {
 }
 
 .page-main {
-    padding-top: 4rem;
+    padding-top: 10rem;
 }
 
 .lead {
@@ -302,14 +307,16 @@ section {
 }
 
 /* --- Cast & Creative Page --- */
-.cast-grid, .gallery-grid {
+.cast-grid, .creative-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
     text-align: center;
 }
 
 .gallery-grid {
+    display: grid;
+    gap: 1.5rem;
     grid-auto-rows: 250px;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
@@ -322,7 +329,38 @@ section {
     grid-column: span 2;
 }
 
-.cast-member img, .gallery-grid img {
+.cast-member {
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.cast-member:hover {
+    transform: translateY(-5px);
+    background-color: #111;
+}
+.cast-member img {
+    width: 225px;
+    height: 225px;
+    object-fit: cover;
+    border-radius: 5px; /* Rounded square headshots */
+    border: 3px solid var(--light-gray);
+    margin: 0 auto 1rem; /* Center image and add space below */
+}
+
+.cast-member h3 {
+    margin-bottom: 0.25rem;
+    font-size: 2.0rem;
+}
+
+.cast-member p {
+    margin-bottom: 0;
+    font-size: 1rem;
+    color: #ccc;
+}
+
+.gallery-grid img {
     max-width: 100%;
     height: 100%;
     object-fit: cover;
@@ -330,8 +368,99 @@ section {
     border: 2px solid var(--light-gray);
 }
 
-.creative-grid {
-    margin-top: 3rem;
+/* --- Cast & Creative Modal --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    display: none; /* Hidden by default */
+    align-items: center;
+    justify-content: center;
+    z-index: 1002;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal {
+    background-color: var(--light-gray);
+    padding: 2.5rem;
+    border-radius: 5px;
+    border: 1px solid #333;
+    max-width: 800px;
+    width: 90%;
+    position: relative;
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal {
+    transform: scale(1);
+}
+
+.modal-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: var(--accent-color);
+    font-size: 2.5rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.modal-content {
+    display: grid;
+    grid-template-columns: 1fr 0.7fr;
+    gap: 2.5rem;
+    align-items: start;
+}
+
+.modal-image img {
+    width: 225px;
+    height: 225px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 3px solid #333;
+}
+
+.modal-text #modal-role {
+    font-style: italic;
+    color: #aaa;
+    margin-top: -1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* === Cast & Creative Modal Socials === */
+.modal-socials {
+    margin-top: 15px;
+    display: none; /* Hidden by default, made visible by JS */
+}
+
+.modal-socials a {
+    display: inline-block;
+    transition: transform 0.2s ease-in-out;
+}
+
+.modal-socials a:hover {
+    transform: scale(1.1);
+}
+
+.modal-socials img {
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+    filter: invert(1); /* Makes the black SVG icon white */
 }
 
 /* --- Ticket Booking Page --- */
@@ -457,6 +586,27 @@ section {
     height: 100%;
 }
 
+/* --- Footer Socials --- */
+.footer-socials {
+    margin-bottom: 1.5rem;
+}
+
+.footer-socials a {
+    display: inline-block;
+    transition: transform 0.2s ease-in-out;
+}
+
+.footer-socials a:hover {
+    transform: scale(1.1);
+    text-decoration: none; /* Prevents underline on icon hover */
+}
+
+.footer-socials img {
+    width: 25px;
+    height: 25px;
+    filter: invert(1); /* Makes the black SVG icon white */
+}
+
 /* --- Footer --- */
 footer {
     background: #111;
@@ -493,6 +643,8 @@ footer a {
 
     .hamburger {
         display: block; /* Show hamburger on mobile */
+        position: relative; /* Ensure z-index is applied correctly */
+        z-index: 1001; /* Place hamburger above the slide-down menu */
     }
 
     .hamburger.active .bar:nth-child(2) {
@@ -507,31 +659,38 @@ footer a {
 
     .nav-menu {
         position: fixed;
-        left: -100%; /* Hide menu off-screen */
-        top: 140px; /* Position below navbar (logo 100px + padding 2.5rem) */
+        left: 0;
+        top: 0;
+        transform: translateY(-100%); /* Hide menu above the screen */
         flex-direction: column;
         align-items: stretch; /* Override desktop alignment for mobile */
-        background-color: #111;
+        background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent black (90% opaque) */
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px); /* For Safari */
         width: 100%;
+        height: 100vh; /* Make menu full screen height */
         text-align: left;
-        transition: 0.3s;
+        transition: transform 0.3s ease-in-out;
         gap: 0;
-        z-index: 99; /* Ensure it's on top of other content */
-        padding-top: 0;
+        z-index: 1000; /* Place menu below hamburger but above all other content */
+        padding-top: 140px; /* Push links down to clear header area */
+        box-sizing: border-box;
     }
 
     .nav-menu.active {
-        left: 0; /* Show menu */
+        transform: translateY(0); /* Slide menu into view */
     }
 
     .nav-link {
         padding: 1.5rem 2rem;
+        font-size: 1.5rem; /* 50% larger than base 1rem */
+        font-weight: bold;
     }
 
     .video-hero h1 {
         font-size: 4.5rem; /* Increased by 1.5x from 3rem */
+        max-width: 550px;
     }
-
     .video-hero p {
         font-size: 1.2rem;
     }
@@ -539,5 +698,20 @@ footer a {
     .nav-menu .cta-button {
         margin: 1.5rem 2rem;
         text-align: center;
+    }
+
+    /* Responsive modal */
+    .modal-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    .modal-image {
+        order: -1; /* Move image to the top on mobile */
+        margin-bottom: 1.5rem;
+    }
+    .modal {
+        padding: 1.5rem;
+        max-height: 85vh;
+        overflow-y: auto;
     }
 }

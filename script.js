@@ -88,11 +88,11 @@ document.addEventListener('DOMContentLoaded', () => {
             showtimesList.innerHTML = `
                 <div class="showtime-card">
                     <p>3:00 PM</p>
-                    <a href="#" class="cta-button">Select Tickets</a>
+                    <a href="https://example.com/book-seats" target="_blank" rel="noopener noreferrer" class="cta-button">Select Seats</a>
                 </div>
                 <div class="showtime-card">
                     <p>7:00 PM</p>
-                    <a href="#" class="cta-button">Select Tickets</a>
+                    <a href="https://example.com/book-seats" target="_blank" rel="noopener noreferrer" class="cta-button">Select Seats</a>
                 </div>
             `;
         };
@@ -101,5 +101,54 @@ document.addEventListener('DOMContentLoaded', () => {
         nextMonthBtn.addEventListener('click', () => { currentDate.setMonth(currentDate.getMonth() + 1); renderCalendar(); });
 
         renderCalendar();
+    }
+
+    // Cast & Creative Modal Logic
+    const castMembers = document.querySelectorAll('.cast-member');
+    const modalOverlay = document.getElementById('cast-modal-overlay');
+
+    if (castMembers.length > 0 && modalOverlay) {
+        const modalCloseBtn = document.getElementById('modal-close-btn');
+        const modalName = document.getElementById('modal-name');
+        const modalRole = document.getElementById('modal-role');
+        const modalBio = document.getElementById('modal-bio');
+        const modalImg = document.getElementById('modal-img');
+        const modalInstagram = document.getElementById('modal-instagram');
+        const modalSocials = document.querySelector('.modal-socials');
+
+        const openModal = (member) => {
+            // Populate modal with data from the clicked member's data attributes
+            modalName.textContent = member.dataset.name;
+            modalRole.innerHTML = `<em>${member.dataset.role}</em>`;
+            modalBio.textContent = member.dataset.bio;
+            modalImg.src = member.dataset.imgSrc;
+            modalImg.alt = `Headshot of ${member.dataset.name}`;
+
+            // Handle Instagram link
+            const instagramUrl = member.dataset.instagram;
+            if (instagramUrl && instagramUrl !== '#') {
+                modalInstagram.href = instagramUrl;
+                modalSocials.style.display = 'block';
+            } else {
+                modalSocials.style.display = 'none';
+            }
+
+            // Show the modal with a fade-in effect
+            modalOverlay.classList.add('active');
+        };
+
+        const closeModal = () => {
+            modalOverlay.classList.remove('active');
+        };
+
+        castMembers.forEach(member => {
+            member.addEventListener('click', () => openModal(member));
+        });
+
+        modalCloseBtn.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', (e) => e.target === modalOverlay && closeModal());
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modalOverlay.classList.contains('active')) closeModal();
+        });
     }
 });
