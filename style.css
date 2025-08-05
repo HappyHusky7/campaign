@@ -79,6 +79,11 @@ a:hover {
     overflow: hidden;
 }
 
+/* Utility class for italicized text */
+.emphasis {
+    font-style: italic;
+}
+
 /* --- Header & Navigation --- */
 header {
     position: sticky;
@@ -314,21 +319,6 @@ section {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
     text-align: center;
-}
-
-.gallery-grid {
-    display: grid;
-    gap: 1.5rem;
-    grid-auto-rows: 250px;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-}
-
-.gallery-grid img:nth-child(2) {
-    grid-row: span 2;
-}
-
-.gallery-grid img:nth-child(4) {
-    grid-column: span 2;
 }
 
 .cast-member {
@@ -573,23 +563,44 @@ section {
     font-weight: bold;
 }
 
-/* --- Gallery Page --- */
-.video-container {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 */
-    height: 0;
-    overflow: hidden;
-    max-width: 100%;
-    background: #000;
-    margin-top: 3rem;
+/* --- Newsletter Signup Section --- */
+.newsletter-signup {
+    background-color: var(--light-gray);
+    padding: 4rem 1rem;
+    text-align: center;
+    border-top: 1px solid #333;
 }
-
-.video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+.newsletter-signup h2 {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    margin-bottom: 0.5rem;
+}
+.newsletter-signup p {
+    max-width: 600px;
+    margin: 0 auto 1.5rem auto;
+    color: #ccc;
+    line-height: 1.6;
+}
+.newsletter-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+.newsletter-form input[type="email"] {
+    flex-grow: 1;
+    padding: 0.8rem;
+    border: 1px solid #555;
+    border-radius: 5px;
+    font-size: 1rem;
+    min-width: 200px;
+    background-color: #333;
+    color: var(--text-color);
+}
+.newsletter-form input[type="email"]::placeholder {
+    color: #888;
 }
 
 /* --- Footer Socials --- */
