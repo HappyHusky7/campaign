@@ -1,20 +1,21 @@
 # campaign
 
 Things to add;
-Placeholder Images for Gallery.
-Rewrite text to be more relevant.
-Create class to italicise the word 'Campaign'. Class already set up.
-Tickets site to HOTA.
+Rewrite paragraph text to be relevant.
+Create class to italicise the word 'Campaign'. Class already set up for most places.
+Add newsletter section to index page and auditions page.
 
-
-Fixes to make;
+Potential fixes to make;
 Footer not on bottom of page when low amount of content on page.
-Reposition video on index.
+Reposition video on index?
+Remove gallery page?
+CSS in JS file, can't seem to move without breaking things.
 
-Fixes I can't solve:
-Fix Border on Auditions Page - alignment issue.
+Fixes I can't solve;
+Fix Border on Auditions Page - alignment issue. Not an issue on mobile.
+Showtime container on tickets page movement affected by seat-map. Not an issue on mobile.
 
 
-
+Remember for Submission;
 Submit link to website for submission.
 https://happyhusky7.github.io/campaign/
