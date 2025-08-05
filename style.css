@@ -222,7 +222,7 @@ header {
 }
 
 .video-hero h1 {
-    font-size: 6.75rem; /* Increased by 1.5x from 4.5rem */
+    font-size: clamp(3.5rem, 1.5rem + 6vw, 6.75rem); /* Fluid font size with a smaller minimum */
     color: var(--accent-color);
     margin-bottom: 1rem;
     line-height: 1; /* Tighter line spacing for the main heading */
@@ -235,8 +235,10 @@ header {
 
 .hero-cta {
     margin-top: 2rem;
-    padding: 1rem 2.5rem;
-    font-size: 1.3rem; /* Slightly larger to match new title sizes */
+    /* Padding is now in 'em' to scale proportionally with the font-size */
+    padding: 0.77em 1.92em;
+    /* Fluid font-size that scales with the viewport, like the h1, shrinking to 70% on mobile */
+    font-size: clamp(0.91rem, 0.25rem + 1.2vw, 1.3rem);
 }
 
 /* --- General Sections --- */
@@ -550,6 +552,10 @@ section {
     font-style: italic;
 }
 
+.hero-content h1 span {
+    display: block;
+    line-height: 1.0; /* Adjust this value for more or less space between lines */
+}
 .showtime-card {
     background-color: var(--light-gray);
     border: 1px solid #333;
@@ -562,7 +568,7 @@ section {
 }
 
 .showtime-card p {
-    margin: 0;
+    margin: 0 1rem 0 0; /* Add right margin for spacing from button */
     font-size: 1.25rem;
     font-weight: bold;
 }
@@ -670,7 +676,9 @@ footer a {
         width: 100%;
         height: 100vh; /* Make menu full screen height */
         text-align: left;
-        transition: transform 0.3s ease-in-out;
+        /* Use visibility to prevent animation on resize, but allow it on click */
+        visibility: hidden;
+        transition: transform 0.3s ease-in-out, visibility 0s 0.3s;
         gap: 0;
         z-index: 1000; /* Place menu below hamburger but above all other content */
         padding-top: 140px; /* Push links down to clear header area */
@@ -679,20 +687,14 @@ footer a {
 
     .nav-menu.active {
         transform: translateY(0); /* Slide menu into view */
+        visibility: visible;
+        transition: transform 0.3s ease-in-out;
     }
 
     .nav-link {
         padding: 1.5rem 2rem;
         font-size: 1.5rem; /* 50% larger than base 1rem */
         font-weight: bold;
-    }
-
-    .video-hero h1 {
-        font-size: 4.5rem; /* Increased by 1.5x from 3rem */
-        max-width: 550px;
-    }
-    .video-hero p {
-        font-size: 1.2rem;
     }
 
     .nav-menu .cta-button {
@@ -713,5 +715,22 @@ footer a {
         padding: 1.5rem;
         max-height: 85vh;
         overflow-y: auto;
+    }
+}
+
+@media (max-width: 800px) {
+    .video-hero {
+        height: auto; /* Let height be determined by the content inside */
+        padding-top: 10rem; /* Provide space for the sticky header */
+        padding-bottom: 6rem; /* Add some space at the bottom */
+    }
+    .hero-content {
+        padding-top: 0; /* Remove desktop-specific padding */
+    }
+    .video-hero h1 {
+        max-width: 550px;
+    }
+    .video-hero p {
+        font-size: 1.2rem;
     }
 }
