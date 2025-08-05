@@ -18,8 +18,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const nextMonthBtn = document.getElementById('next-month-btn');
         const selectedDateDisplay = document.getElementById('selected-date-display');
         const showtimesList = document.getElementById('showtimes-list');
+        
+        // --- Configuration for available show dates ---
+        const showYear = 2025;
+        const showMonth = 7; // August (0-indexed: January is 0)
+        const availableShowDays = [23, 24, 26, 27, 29, 30, 31];
+        // --- End Configuration ---
 
-        let currentDate = new Date();
+        let currentDate = new Date(showYear, showMonth, 1); // Start calendar in August 2024
         let selectedDate = null;
 
         const renderCalendar = () => {
@@ -41,6 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 calendarGrid.appendChild(dayCell);
             }
 
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
             // Render days of the current month
             for (let i = 1; i <= daysInMonth; i++) {
                 const dayCell = document.createElement('div');
@@ -48,14 +57,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 dayCell.classList.add('day');
                 
                 const cellDate = new Date(year, month, i);
-                const today = new Date();
-                today.setHours(0, 0, 0, 0);
+                const isAvailable = year === showYear && month === showMonth && availableShowDays.includes(i);
 
-                // Disable past dates and Tuesdays
-                if (cellDate < today || cellDate.getDay() === 2) {
-                    dayCell.classList.add('disabled');
-                } else {
+                if (isAvailable) {
                     dayCell.addEventListener('click', () => selectDate(cellDate));
+                } else {
+                    dayCell.classList.add('disabled');
                 }
 
                 if (cellDate.getTime() === today.getTime()) dayCell.classList.add('today');
@@ -85,16 +92,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const renderShowtimes = (date) => {
             selectedDateDisplay.textContent = date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
             
-            showtimesList.innerHTML = `
-                <div class="showtime-card">
-                    <p>3:00 PM</p>
-                    <a href="https://example.com/book-seats" target="_blank" rel="noopener noreferrer" class="cta-button">Select Seats</a>
-                </div>
-                <div class="showtime-card">
-                    <p>7:00 PM</p>
-                    <a href="https://example.com/book-seats" target="_blank" rel="noopener noreferrer" class="cta-button">Select Seats</a>
-                </div>
-            `;
+            const dayOfWeek = date.getDay(); // Sunday - 0, Monday - 1, ..., Saturday - 6
+            let showtimesHTML = '';
+
+            // Weekends (Saturday & Sunday) have two shows
+            if (dayOfWeek === 0 || dayOfWeek === 6) {
+                showtimesHTML += `
+                    <div class="showtime-card">
+                        <p>1:00 PM</p>
+                        <a href="https://example.com/book-seats" target="_blank" rel="noopener noreferrer" class="cta-button">Select Seats</a>
+                    </div>`;
+            }
+
+            // All available days have a 7:00 PM show
+            showtimesHTML += `
+            <div class="showtime-card">
+                <p>7:30 PM</p>
+                <a href="https://example.com/book-seats" target="_blank" rel="noopener noreferrer" class="cta-button">Select Seats</a>
+            </div>`;
+
+            showtimesList.innerHTML = showtimesHTML;
         };
 
         prevMonthBtn.addEventListener('click', () => { currentDate.setMonth(currentDate.getMonth() - 1); renderCalendar(); });

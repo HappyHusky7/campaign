@@ -14,3 +14,7 @@ Reposition video on index.
 Fixes I can't solve:
 Fix Border on Auditions Page - alignment issue.
 
+
+
+Submit link to website for submission.
+https://happyhusky7.github.io/campaign/
