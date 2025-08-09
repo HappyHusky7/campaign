@@ -22,29 +22,47 @@
     --body-font: 'semplicita-pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;;
+/* --- Modern CSS Reset --- */
+/* A simple but effective reset to ensure consistency across browsers. */
+
+/* 1. Use a more-intuitive box-sizing model on every element. */
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
-img {
-    display: block;
-    max-width: 100%;
-    height: auto;
+/* 2. Remove default margin and padding. */
+* {
+  margin: 0;
+  padding: 0;
 }
 
+/* 3. Set core body defaults for better typography and layout. */
+body {
+  min-height: 100vh;
+  line-height: 1.6; /* A sensible default for readability */
+  -webkit-font-smoothing: antialiased; /* Improve font rendering on macOS/iOS */
+}
 
+/* 4. Make images and other media easier to work with. */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 5. Inherit fonts for form elements for consistency. */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* Base body styles */
 
 body {
     font-family: var(--body-font);
-    margin: 0;
-    padding: 0;
     color: var(--text-color);
     background-color: #000;
-    line-height: 1.6;
 }
 
+/* Base heading styles */
 h1, h2, h3, h4 {
     font-family: var(--heading-font);
     color: var(--primary-color);
@@ -63,20 +81,23 @@ h2 {
 h3 { font-size: 1.75rem; }   /* Approx 1.5x default */
 h4 { font-size: 1.5rem; }      /* Approx 1.5x default */
 
+/* Default link styling */
 a {
     color: var(--primary-color);
     text-decoration: none;
 }
 
+/* Link hover state */
 a:hover {
     text-decoration: underline;
 }
 
+/* Centered content container */
 .container {
     max-width: 1100px;
     margin: auto;
     padding: 0 2rem;
-    overflow: hidden;
+    overflow: hidden; /* Prevents content from spilling out */
 }
 
 /* Utility class for italicized text */
@@ -85,6 +106,7 @@ a:hover {
 }
 
 /* --- Header & Navigation --- */
+/* Header container for positioning */
 header {
     position: sticky;
     top: 0;
@@ -119,12 +141,14 @@ header {
     vertical-align: middle; /* Helps align the logo with nav links */
 }
 
+/* Navigation menu container */
 .nav-menu {
     display: flex;
     align-items: center;
     gap: 1.5rem;
 }
 
+/* Individual navigation links */
 .nav-link {
     color: var(--accent-color);
     font-weight: normal;
@@ -136,6 +160,7 @@ header {
     color: var(--primary-color);
 }
 
+/* General Call-to-Action button style */
 .cta-button {
     background-color: var(--secondary-color);
     color: #fff;
@@ -157,7 +182,13 @@ header {
     text-decoration: none;
 }
 
+/* Add a style for the active CTA button */
+.cta-button.active {
+    box-shadow: 0 0 0 2px var(--accent-color); /* Adds a white outline */
+}
+
 /* --- Scroll-driven Animation for Navbar --- */
+/* Defines the keyframes for the navbar background transition */
 @keyframes fade-to-glass-background {
     to {
         background: rgba(0, 0, 0, 0.2);
@@ -207,6 +238,7 @@ header {
     z-index: -1; /* Position it between the video and the text */
 }
 
+/* Styles for the background video to ensure it covers the hero area */
 .video-hero video {
     position: absolute;
     top: 50%;
@@ -247,11 +279,13 @@ header {
 }
 
 /* --- General Sections --- */
+/* Default padding for all major sections */
 section {
     padding: 4rem 0;
 }
 
 .page-main {
+    /* Adds top padding to main content on subpages to clear the sticky nav */
     padding-top: 10rem;
 }
 
@@ -273,6 +307,7 @@ section {
     padding-top: calc(4.5rem); /* Add extra space below the hero */
 }
 
+/* "Learn More" link styling */
 .learn-more {
     display: inline-block;
     margin-top: 1rem;
@@ -286,6 +321,7 @@ section {
     text-align: center;
 }
 
+/* Grid layout for review items */
 .review-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -293,12 +329,14 @@ section {
     margin-top: 2rem;
 }
 
+/* Blockquote style within a review item */
 .review-item blockquote {
     font-size: 1.2rem;
     font-style: italic;
     margin: 0;
 }
 
+/* Citation (author) style for a review */
 .review-item cite {
     display: block;
     margin-top: 1rem;
@@ -307,12 +345,14 @@ section {
 }
 
 /* --- About Page --- */
+/* Styling for individual FAQ items */
 .faq-item {
     margin-bottom: 1.5rem;
     border-left: 3px solid var(--primary-color);
     padding-left: 1rem;
 }
 
+/* Grid layout for cast and creative team members */
 /* --- Cast & Creative Page --- */
 .cast-grid, .creative-grid {
     display: grid;
@@ -352,6 +392,7 @@ section {
     color: #ccc;
 }
 
+/* Styling for images in the gallery grid */
 .gallery-grid img {
     max-width: 100%;
     height: 100%;
@@ -399,6 +440,7 @@ section {
     transform: scale(1);
 }
 
+/* Modal close button */
 .modal-close {
     position: absolute;
     top: 0.5rem;
@@ -411,6 +453,7 @@ section {
     cursor: pointer;
 }
 
+/* Grid layout for modal content (image and text) */
 .modal-content {
     display: grid;
     grid-template-columns: 1fr 0.7fr;
@@ -418,6 +461,7 @@ section {
     align-items: start;
 }
 
+/* Image inside the modal */
 .modal-image img {
     width: 225px;
     height: 225px;
@@ -439,11 +483,13 @@ section {
     display: none; /* Hidden by default, made visible by JS */
 }
 
+/* Social media links in the modal */
 .modal-socials a {
     display: inline-block;
     transition: transform 0.2s ease-in-out;
 }
 
+/* Hover effect for modal social links */
 .modal-socials a:hover {
     transform: scale(1.1);
 }
@@ -463,12 +509,14 @@ section {
     margin-top: 2rem;
 }
 
+/* Two-column layout for the ticket booking section on larger screens */
 @media (min-width: 992px) {
     .ticket-booking-container {
         grid-template-columns: 1.2fr 1fr;
     }
 }
 
+/* Container for the calendar component */
 .calendar-container {
     background-color: var(--light-gray);
     padding: 1.5rem;
@@ -476,6 +524,7 @@ section {
     border: 1px solid #333;
 }
 
+/* Header for the calendar (Month + navigation buttons) */
 .calendar-header {
     display: flex;
     justify-content: space-between;
@@ -483,11 +532,13 @@ section {
     margin-bottom: 1rem;
 }
 
+/* Month title in the calendar header */
 .calendar-header h2 {
     margin: 0;
     font-size: 1.75rem;
 }
 
+/* Previous/Next month buttons in the calendar */
 .calendar-header button {
     background: none;
     border: none;
@@ -497,6 +548,7 @@ section {
     padding: 0 1rem;
 }
 
+/* Grid layout for both weekdays and the days of the month */
 .weekdays, .days-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -504,12 +556,14 @@ section {
     gap: 0.5rem;
 }
 
+/* Styling for the weekday labels (Sun, Mon, etc.) */
 .weekdays {
     font-weight: bold;
     margin-bottom: 0.5rem;
     color: #aaa;
 }
 
+/* Individual day cell in the calendar */
 .day {
     padding: 0.75rem 0;
     border-radius: 50%;
@@ -517,6 +571,7 @@ section {
     transition: background-color 0.2s, color 0.2s;
 }
 
+/* Various states for a calendar day */
 .day:not(.disabled):hover { background-color: var(--primary-color); color: var(--accent-color); }
 .day.disabled { color: #444; cursor: not-allowed; text-decoration: line-through; }
 .day.disabled.prev-next-month {
@@ -566,12 +621,13 @@ section {
 /* --- Newsletter Signup Section --- */
 .newsletter-signup {
     background-color: var(--light-gray);
-    padding: 4rem 1rem;
+    padding: 3rem 1rem;
+    margin-top: 6rem; /* Adds space above the container */
     text-align: center;
-    border-top: 1px solid #333;
 }
 .newsletter-signup h2 {
     font-size: clamp(1.8rem, 5vw, 2.5rem);
+    margin-top: 0; /* Removes inherited margin to bring text closer to top of box */
     margin-bottom: 0.5rem;
 }
 .newsletter-signup p {
@@ -580,6 +636,7 @@ section {
     color: #ccc;
     line-height: 1.6;
 }
+/* Flex container for the newsletter form */
 .newsletter-form {
     display: flex;
     justify-content: center;
@@ -589,6 +646,7 @@ section {
     max-width: 500px;
     margin: 0 auto;
 }
+/* Email input field for the newsletter */
 .newsletter-form input[type="email"] {
     flex-grow: 1;
     padding: 0.8rem;
@@ -604,10 +662,12 @@ section {
 }
 
 /* --- Footer Socials --- */
+/* Container for social media icons in the footer */
 .footer-socials {
     margin-bottom: 1.5rem;
 }
 
+/* Individual social media icon links in the footer */
 .footer-socials a {
     display: inline-block;
     transition: transform 0.2s ease-in-out;
@@ -633,16 +693,19 @@ footer {
     margin-top: 4rem;
 }
 
+/* Links within the footer */
 footer a {
     color: var(--accent-color);
 }
 
 /* --- Hamburger Menu --- */
+/* Hamburger icon container */
 .hamburger {
     display: none; /* Hidden on desktop */
     cursor: pointer;
 }
 
+/* Individual bars of the hamburger icon */
 .bar {
     display: block;
     width: 25px;
@@ -653,6 +716,7 @@ footer a {
 }
 
 /* --- Responsive Design --- */
+/* Styles for tablets and smaller desktops */
 @media (max-width: 1050px) {
     .navbar {
         align-items: center; /* Re-center items on mobile */
@@ -664,12 +728,15 @@ footer a {
         z-index: 1001; /* Place hamburger above the slide-down menu */
     }
 
+    /* Animation to transform hamburger into an "X" */
     .hamburger.active .bar:nth-child(2) {
         opacity: 0;
     }
+    /* Top bar rotates down */
     .hamburger.active .bar:nth-child(1) {
         transform: translateY(8px) rotate(45deg);
     }
+    /* Bottom bar rotates up */
     .hamburger.active .bar:nth-child(3) {
         transform: translateY(-8px) rotate(-45deg);
     }
@@ -702,6 +769,7 @@ footer a {
         transition: transform 0.3s ease-in-out;
     }
 
+    /* Mobile navigation link styles */
     .nav-link {
         padding: 1.5rem 2rem;
         font-size: 1.5rem; /* 50% larger than base 1rem */
@@ -722,6 +790,7 @@ footer a {
         order: -1; /* Move image to the top on mobile */
         margin-bottom: 1.5rem;
     }
+    /* Adjust modal for smaller screens */
     .modal {
         padding: 1.5rem;
         max-height: 85vh;
@@ -729,6 +798,7 @@ footer a {
     }
 }
 
+/* Styles for mobile devices */
 @media (max-width: 800px) {
     .video-hero {
         height: auto; /* Let height be determined by the content inside */
@@ -738,9 +808,11 @@ footer a {
     .hero-content {
         padding-top: 0; /* Remove desktop-specific padding */
     }
+    /* Constrain hero title width on mobile */
     .video-hero h1 {
         max-width: 550px;
     }
+    /* Adjust hero paragraph font size for mobile */
     .video-hero p {
         font-size: 1.2rem;
     }

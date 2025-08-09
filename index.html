@@ -3,9 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campaign: The Interactive Musical - Official Website</title>
+    <meta name="description" content="Experience Campaign, the groundbreaking interactive musical where your vote counts. Book tickets now for the must-see theatrical event of the year.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://happyhusky7.github.io/campaign/index.html">
+    <meta property="og:title" content="Campaign: The Interactive Musical - Official Website">
+    <meta property="og:description" content="Experience Campaign, the groundbreaking interactive musical where your vote counts.">
+    <meta property="og:image" content="https://happyhusky7.github.io/campaign/Images/social-share-image.jpg"> <!-- Note: Create and add a social sharing image to this path -->
+
+    <link rel="canonical" href="https://happyhusky7.github.io/campaign/index.html">
+    <!-- Favicons -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="favicon.png">
+
     <link rel="stylesheet" href="https://use.typekit.net/ibf4efh.css">
-    <title>Campaign Musical - The Official Website</title>
     <link rel="stylesheet" href="style.css">
+    <!-- SEO: Structured Data for the Show -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TheaterEvent",
+      "name": "Campaign: The Musical",
+      "description": "Experience Campaign, the groundbreaking interactive musical where your vote counts. Book tickets now for the must-see theatrical event of the year.",
+      "location": {
+        "@type": "Place",
+        "name": "The Grand Theatre",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "123 Main Street",
+          "addressLocality": "Theatre District",
+          "addressCountry": "US"
+        }
+      },
+      "image": "https://happyhusky7.github.io/campaign/Images/social-share-image.jpg",
+      "performer": {
+        "@type": "PerformingGroup",
+        "name": "The Cast of Campaign"
+      },
+      "organizer": {
+          "@type": "Organization",
+          "name": "Campaign Musical",
+          "url": "https://happyhusky7.github.io/campaign/index.html"
+      }
+    }
+    </script>
 </head>
 <body>
     <header>
@@ -30,7 +74,10 @@
 
     <main>
         <section class="video-hero">
-            <video src="Images/hero-video.mp4" autoplay muted loop playsinline></video>
+            <video autoplay muted loop playsinline preload="auto">
+                <source src="Images/hero-video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
             <div class="hero-content">
                 <h1>
                     <span>Experience&nbsp;the</span>
@@ -73,7 +120,7 @@
     <section class="newsletter-signup">
         <div class="container">
             <h2>Join Our Newsletter</h2>
-            <p>Stay up to date with the latest news, show announcements, and exclusive offers from 'Campaign'.</p>
+            <p>Stay up to date with the latest news, show announcements, and exclusive offers from <span class="emphasis">Campaign</span>.</p>
             <form class="newsletter-form" action="https://formspree.io/f/xyzpneoj" method="POST">
                 <input type="email" name="email" placeholder="Enter your email address" required>
                 <button type="submit" class="cta-button">Subscribe</button>
@@ -85,7 +132,7 @@
          <p>Follow the Campaign on Instagram</p>
         <div class="footer-socials">
             <a href="https://instagram.com/example" target="_blank" rel="noopener noreferrer">
-                <img src="Images/icons/instagram.svg" alt="Instagram Profile">
+                <img src="Images/icons/instagram.svg" alt="Instagram Profile" loading="lazy" decoding="async">
             </a>
         </div>
         <div class="container">

@@ -1,12 +1,15 @@
 # campaign
 
 Things to add;
+Set up Instagram Page for Campaign Musical.
+Take a better picture for myself.
+Search engine optimisation.
+Comments are good - comment everything.
+Write a proper readme file.
 
-Potential fixes to make;
-Implement Italic into cast descriptions.
-Realign Newsletter.
-Optimise Images?
 
 Remember for Submission;
-Submit link to website for submission.
-https://happyhusky7.github.io/campaign/
+Submit link to website for submission - https://happyhusky7.github.io/campaign/
+Update Document.
+Zip folder at the end and name folder properly.
+Make a time log.
