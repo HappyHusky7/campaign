@@ -16,6 +16,8 @@
 
 ## 📖 About The Project
 
+[![Product Screenshot][product-screenshot]](https://happyhusky7.github.io/campaign/)
+
 This repository contains the source code for the official website of 'Campaign: The Interactive Musical'. The site is designed to provide information about the show, introduce the cast and creative team, announce auditions, and serve as the primary portal for booking tickets. It aims to create an engaging online presence that reflects the dynamic and interactive nature of the musical itself.
 
 ### ✨ Features
