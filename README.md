@@ -55,4 +55,4 @@ To get a local copy up and running, follow these simple steps.
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: Images/screenshot.png
