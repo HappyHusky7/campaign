@@ -2,10 +2,8 @@
 
 Things to add;
 Set up Instagram Page for Campaign Musical.
-Take a better picture for myself.
-Search engine optimisation.
-Comments are good - comment everything.
 Write a proper readme file.
+Better Picture for Myself.
 
 
 Remember for Submission;
