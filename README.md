@@ -3,8 +3,6 @@
 Things to add;
 Set up Instagram Page for Campaign Musical.
 Write a proper readme file.
-Better Picture for Myself.
-
 
 Remember for Submission;
 Submit link to website for submission - https://happyhusky7.github.io/campaign/
